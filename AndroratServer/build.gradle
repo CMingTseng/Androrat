@@ -1,0 +1,33 @@
+apply plugin: 'application'
+apply plugin: 'java'
+
+mainClassName = 'com.androrat.server'
+applicationName = 'AndroratServer'
+ 
+startScripts.enabled = false
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+        }
+    }
+}
+
+configurations.all {
+    resolutionStrategy.force 'com.google.code.findbugs:jsr305:3.0.2'
+    resolutionStrategy {
+        failOnVersionConflict()
+        preferProjectModules()
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'javax.annotation:javax.annotation-api:1.2'
+    implementation 'com.google.code.findbugs:jsr305:3.0.2'
+    implementation project(':GeneralLibrary')
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"

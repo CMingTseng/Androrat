@@ -1,0 +1,31 @@
+apply plugin: 'application'
+apply plugin: 'java'
+
+mainClassName = 'experiment.general.library'
+applicationName = 'ExperimentGeneralLibrary'
+startScripts.enabled = false
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+        }
+    }
+}
+
+configurations.all {
+    resolutionStrategy.force 'com.google.code.findbugs:jsr305:3.0.2'
+    resolutionStrategy {
+        failOnVersionConflict()
+        preferProjectModules()
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'javax.annotation:javax.annotation-api:1.2'
+    implementation 'com.google.code.findbugs:jsr305:3.0.2'
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
